@@ -1,4 +1,4 @@
-package com.example.Immigration_Management_System_Demo.Entity;
+package com.example.Immigration_Management_System_Demo.Entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -11,19 +11,19 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table
 public class ImmigrationOfficer extends Person{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String badgeNumber;
-    private String rank;
+    private String officerRank;
     private Integer clearanceLevel;
     private Boolean active;
 
     @ManyToOne
-    ImmigrationCenter immigrationCenter;
+    private ImmigrationCenter center;
     @OneToMany
-    List<Interview> interview;
+    private List<Interview> interviews;
+
 }

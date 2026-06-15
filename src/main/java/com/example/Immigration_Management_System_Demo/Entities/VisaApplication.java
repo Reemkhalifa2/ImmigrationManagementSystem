@@ -1,4 +1,4 @@
-package com.example.Immigration_Management_System_Demo.Entity;
+package com.example.Immigration_Management_System_Demo.Entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -18,7 +18,6 @@ public class VisaApplication {
 
     @ManyToOne
     Applicant applicant;
-
     @ManyToOne
     ImmigrationOfficer immigrationOfficer;
 

@@ -1,4 +1,4 @@
-package com.example.Immigration_Management_System_Demo.Entity;
+package com.example.Immigration_Management_System_Demo.Entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -21,6 +21,6 @@ public class Interview {
     @ManyToOne
     Applicant applicant;
     @ManyToOne
-    ImmigrationOfficer immigrationOfficer;
+    private ImmigrationOfficer immigrationOfficer;
 
 }

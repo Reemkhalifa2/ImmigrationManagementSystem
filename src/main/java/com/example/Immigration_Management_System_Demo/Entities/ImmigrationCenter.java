@@ -1,4 +1,4 @@
-package com.example.Immigration_Management_System_Demo.Entity;
+package com.example.Immigration_Management_System_Demo.Entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -11,7 +11,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table
 public class ImmigrationCenter {
 
     @Id
@@ -25,6 +24,4 @@ public class ImmigrationCenter {
     @OneToMany
     List<ImmigrationOfficer> immigrationOfficer;
 
-    @OneToMany
-    List<BorderControlofficer> borderControlofficer;
 }
