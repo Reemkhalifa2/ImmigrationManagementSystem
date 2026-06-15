@@ -15,4 +15,7 @@ public class ImmigrationCenter {
 
     @OneToMany
     ImmigrationOfficer immigrationOfficer;
+
+    @OneToMany
+    BorderControlofficer borderControlofficer;
 }
