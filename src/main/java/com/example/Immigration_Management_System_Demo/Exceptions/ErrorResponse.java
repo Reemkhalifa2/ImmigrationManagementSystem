@@ -8,8 +8,6 @@ import org.springframework.http.HttpStatus;
 import java.util.Date;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class ErrorResponse {
     public ErrorResponse(Date timestamp, int statusCode, HttpStatus status, String error, String message, String path) {
         this.timestamp = timestamp;
