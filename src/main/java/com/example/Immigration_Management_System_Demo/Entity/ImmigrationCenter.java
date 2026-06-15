@@ -1,8 +1,17 @@
 package com.example.Immigration_Management_System_Demo.Entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import java.util.List;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
+@Table
 public class ImmigrationCenter {
 
     @Id
@@ -14,8 +23,8 @@ public class ImmigrationCenter {
     private Integer dailyCapacity;
 
     @OneToMany
-    ImmigrationOfficer immigrationOfficer;
+    List<ImmigrationOfficer> immigrationOfficer;
 
     @OneToMany
-    BorderControlofficer borderControlofficer;
+    List<BorderControlofficer> borderControlofficer;
 }
