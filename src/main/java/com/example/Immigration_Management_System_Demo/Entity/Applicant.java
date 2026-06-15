@@ -1,7 +1,15 @@
 package com.example.Immigration_Management_System_Demo.Entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import java.util.List;
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Table
 @Entity
 public class Applicant extends Person{
     @Id
@@ -11,9 +19,8 @@ public class Applicant extends Person{
     private String nationality;
     private Boolean criminalRecord;
     @OneToMany
-    VisaApplication visaApplication;
-
+    List<VisaApplication> visaApplications;
     @OneToMany
-    Interview interview;
+    List<Interview> interview;
 
 }
