@@ -1,8 +1,17 @@
 package com.example.Immigration_Management_System_Demo.Entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import java.util.List;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
+@Table
 public class ImmigrationOfficer extends Person{
 
     @Id
@@ -16,5 +25,5 @@ public class ImmigrationOfficer extends Person{
     @ManyToOne
     ImmigrationCenter immigrationCenter;
     @OneToMany
-    Interview interview;
+    List<Interview> interview;
 }
