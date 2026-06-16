@@ -41,6 +41,12 @@ public class ApplicantController {
     }
 
 
+    @PutMapping("flag/{id}")
+    public Applicant flag(@PathVariable Long id){
+        return applicantService.flagCriminalRecord(id);
+    }
+
+
 
 
 
