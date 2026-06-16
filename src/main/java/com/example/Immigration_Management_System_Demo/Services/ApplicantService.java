@@ -1,10 +1,13 @@
 package com.example.Immigration_Management_System_Demo.Services;
 
 import com.example.Immigration_Management_System_Demo.Entities.Applicant;
+import com.example.Immigration_Management_System_Demo.Entities.AsylumSeeker;
 import com.example.Immigration_Management_System_Demo.Entities.Interview;
 import com.example.Immigration_Management_System_Demo.Repository.ApplicantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ApplicantService {
@@ -26,21 +29,29 @@ public class ApplicantService {
         return applicantRepository.save(applicant);
     }
 
-    public Applicant saveApplicant(String firstName, String lastName, String passportNumber, String nationality){
-        Applicant applicant = new Applicant();
-        if(applicant.getPassportNumber().isBlank()){
+    public Applicant saveApplicant(String firstName, String lastName,
+                                   String passportNumber, String nationality) {
+
+        if (passportNumber == null || passportNumber.isBlank()) {
             throw new RuntimeException("Passport Number cannot be empty.");
         }
-        if(applicant.getNationality().isBlank()){
+
+        if (nationality == null || nationality.isBlank()) {
             throw new RuntimeException("Nationality cannot be empty.");
         }
-        if(applicant.getFirstName().isBlank() || applicant.getLastName().isBlank()){
-            throw new RuntimeException("Name Cannot be empty.");
+
+        if (firstName == null || firstName.isBlank() ||
+                lastName == null || lastName.isBlank()) {
+            throw new RuntimeException("Name cannot be empty.");
         }
+
+        Applicant applicant = new Applicant();
+
         applicant.setFirstName(firstName);
         applicant.setLastName(lastName);
         applicant.setPassportNumber(passportNumber);
         applicant.setNationality(nationality);
+
         return applicantRepository.save(applicant);
     }
 
