@@ -18,6 +18,10 @@ public class ApplicantController {
     ApplicantService applicantService;
 
 
+    @PostMapping("register")
+    public Applicant saveApplicant(@RequestBody  Applicant applicant){
+        return applicantService.saveApplicant(applicant);
+    }
 
 
 
