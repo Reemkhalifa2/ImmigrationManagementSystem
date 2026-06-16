@@ -40,6 +40,14 @@ public class OfficerService {
         return officerRepository.save(borderControlofficer);
     }
 
+    public ImmigrationOfficer search(Long id){
+        if(id==null){
+            throw new RuntimeException("Id cannot be null");
+        }
+        ImmigrationOfficer immigrationOfficer = officerRepository.findById(id).orElseThrow(() -> new RuntimeException("officer not found"));
+        return immigrationOfficer;
+    }
+
     public ImmigrationOfficer promoteOfficer(@NotBlank(message = "id cannot be null") Long officerId, String newRank, int newClearanceLevel){
         ImmigrationOfficer immigrationOfficer = officerRepository.getById(officerId);
         if(immigrationOfficer == null){
