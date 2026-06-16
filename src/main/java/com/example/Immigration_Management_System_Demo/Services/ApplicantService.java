@@ -74,5 +74,14 @@ public class ApplicantService {
         }
         return applicantRepository.save(applicant);
     }
+    public List<Applicant> getAll(){
+        return applicantRepository.findAll().stream().toList();
+    }
+
+    public List<Applicant> search(String nationality) {
+        return applicantRepository.findByNationality(nationality);
+    }
+
+
 
 }
