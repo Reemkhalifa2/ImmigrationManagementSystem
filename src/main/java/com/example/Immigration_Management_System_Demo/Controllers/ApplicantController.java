@@ -27,6 +27,12 @@ public class ApplicantController {
             nationality){
         return applicantService.saveApplicant(firstName, lastName, passportNumber, nationality);
     }
+    @PostMapping("register/asylum-seeker")
+    public AsylumSeeker saveApplicant(@RequestBody AsylumSeeker asylumSeeker){
+        return applicantService.saveApplicant(asylumSeeker);
+    }
+
+
 
 
 
