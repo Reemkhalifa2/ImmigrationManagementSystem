@@ -10,6 +10,6 @@ import java.util.List;
 
 @Repository
 public interface ApplicantRepository extends JpaRepository<Applicant, Long> {
-    @Query("Select a from applicant where a.nationality=:nationality")
+    @Query("SELECT a FROM Applicant a WHERE a.nationality =:nationality")
     List<Applicant> findByNationality(@Param("nationality") String nationality);
 }
