@@ -8,6 +8,8 @@ import jakarta.validation.constraints.NotBlank;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class OfficerService {
 
@@ -51,6 +53,23 @@ public class OfficerService {
                 .orElseThrow(() -> new RuntimeException("Center not found with id: " + newCenterId));
         officer.setCenter(center);
         return officerRepository.save(officer);
+    }
+
+    public List<ImmigrationOfficer> findOfficersByRank(String rank){
+        if(rank == null){
+            throw new RuntimeException("Rank cannot be empty");
+        }
+        return officerRepository.findByOfficerRank(rank);
+    }
+
+    public List<ImmigrationOfficer> findOfficersByRank(String rank, int minimumClearanceLevel){
+        if(rank == null){
+            throw new RuntimeException("Rank cannot be empty");
+        }
+        if(minimumClearanceLevel<0 || minimumClearanceLevel > 5){
+            throw new RuntimeException("Clearance Level must be between 0 and 5");
+        }
+        return officerRepository.findByOfficerRank(rank);
     }
 
 
