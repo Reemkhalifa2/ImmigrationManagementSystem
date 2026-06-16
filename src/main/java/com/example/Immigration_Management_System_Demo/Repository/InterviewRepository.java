@@ -16,5 +16,7 @@ public interface InterviewRepository extends JpaRepository<Interview , Long> {
 
     List<Interview> getOfficerSchedule(Long officerId,
                                        String date);
+    List<Interview> findByOfficerIdAndInterviewDate(Long officerId, String interviewDate);
+
 
 }
