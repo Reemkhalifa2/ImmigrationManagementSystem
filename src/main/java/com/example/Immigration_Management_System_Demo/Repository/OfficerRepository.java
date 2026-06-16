@@ -11,4 +11,6 @@ public interface OfficerRepository extends JpaRepository<ImmigrationOfficer , Lo
 
     @Query("SELECT i from ImmigrationOfficer i where i.id=:id And i.active = true")
     ImmigrationOfficer getById(@Param("id") Long id);
+
+    List<ImmigrationOfficer> findByOfficerRank(@Param("officerRank") String officerRank);
 }
