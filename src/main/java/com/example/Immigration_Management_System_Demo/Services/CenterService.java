@@ -19,6 +19,10 @@ public class CenterService {
         return centerRepository.save(immigrationCenter);
     }
 
+    public ImmigrationCenter search(Long id) {
+        return centerRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Center not found"));
+    }
 
 
 
