@@ -1,0 +1,28 @@
+package com.example.Immigration_Management_System_Demo.Controllers;
+
+import com.example.Immigration_Management_System_Demo.Entities.Applicant;
+import com.example.Immigration_Management_System_Demo.Entities.AsylumSeeker;
+import com.example.Immigration_Management_System_Demo.Services.ApplicantService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("applicants")
+public class ApplicantController {
+    @Autowired
+    public ApplicantController(ApplicantService applicantService) {
+        this.applicantService = applicantService;
+    }
+    ApplicantService applicantService;
+
+
+
+
+
+
+
+
+
+}
