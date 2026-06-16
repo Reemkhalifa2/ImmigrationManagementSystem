@@ -56,6 +56,12 @@ public class ApplicantService {
     }
 
 
+    public AsylumSeeker saveApplicant(AsylumSeeker asylumSeeker){
+        if(asylumSeeker != null)  return applicantRepository.save(asylumSeeker) ;
+        throw new RuntimeException("Seeker cannot be empty.");
+    }
+
+
     public Applicant flagCriminalRecord(Long applicantId){
         if(applicantId == null){
             throw new RuntimeException("Id cannot be null");
