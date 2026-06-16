@@ -20,6 +20,9 @@ public class CenterService {
     }
 
     public ImmigrationCenter search(Long id) {
+        if(id == null){
+            throw new RuntimeException("Id cannot be null");
+        }
         return centerRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Center not found"));
     }
