@@ -1,5 +1,6 @@
 package com.example.Immigration_Management_System_Demo.Services;
 
+import com.example.Immigration_Management_System_Demo.Entities.BorderControlofficer;
 import com.example.Immigration_Management_System_Demo.Entities.ImmigrationCenter;
 import com.example.Immigration_Management_System_Demo.Entities.ImmigrationOfficer;
 import com.example.Immigration_Management_System_Demo.Repository.CenterRepository;
@@ -30,6 +31,13 @@ public class OfficerService {
             throw new RuntimeException("Officer cannot be empty");
         }
         return officerRepository.save(immigrationOfficer);
+    }
+
+    public BorderControlofficer register(BorderControlofficer borderControlofficer){
+        if(borderControlofficer == null){
+            throw new RuntimeException("Officer cannot be empty");
+        }
+        return officerRepository.save(borderControlofficer);
     }
 
     public ImmigrationOfficer promoteOfficer(@NotBlank(message = "id cannot be null") Long officerId, String newRank, int newClearanceLevel){
