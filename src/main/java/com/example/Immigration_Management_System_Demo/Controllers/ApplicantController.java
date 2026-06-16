@@ -31,6 +31,15 @@ public class ApplicantController {
     public AsylumSeeker saveApplicant(@RequestBody AsylumSeeker asylumSeeker){
         return applicantService.saveApplicant(asylumSeeker);
     }
+    @GetMapping()
+    public List<Applicant> getAll(){
+        return applicantService.getAll();
+    }
+    @GetMapping("search")
+    public List<Applicant> search(@RequestParam String nationality){
+        return applicantService.search(nationality);
+    }
+
 
 
 
