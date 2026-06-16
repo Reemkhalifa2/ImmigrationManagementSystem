@@ -23,6 +23,13 @@ public class OfficerService {
         this.centerRepository = centerRepository;
     }
 
+    public ImmigrationOfficer register(ImmigrationOfficer immigrationOfficer){
+        if(immigrationOfficer == null){
+            throw new RuntimeException("Officer cannot be empty");
+        }
+        return officerRepository.save(immigrationOfficer);
+    }
+
     public ImmigrationOfficer promoteOfficer(@NotBlank(message = "id cannot be null") Long officerId, String newRank, int newClearanceLevel){
         ImmigrationOfficer immigrationOfficer = officerRepository.getById(officerId);
         if(immigrationOfficer == null){
