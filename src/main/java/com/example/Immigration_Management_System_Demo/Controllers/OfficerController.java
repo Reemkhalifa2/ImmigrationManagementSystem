@@ -31,16 +31,16 @@ public class OfficerController {
     }
 
     @GetMapping("/{id}")
-    public ImmigrationOfficer register(@PathVariable Long id){
+    public ImmigrationOfficer search(@PathVariable Long id){
         return officerService.search(id);
     }
 
-    @PostMapping("promote/{id}")
+    @PutMapping("promote/{id}")
     public ImmigrationOfficer promoteOfficer(@PathVariable Long id , @RequestParam String newRank, @RequestParam Integer clearance){
         return officerService.promoteOfficer(id,newRank,clearance);
     }
 
-    @PostMapping("transfer/{id}")
+    @PutMapping("transfer/{id}")
     public ImmigrationOfficer promoteOfficer(@PathVariable Long id , @RequestParam Long centerId){
         return officerService.transferOfficer(id,centerId);
     }
