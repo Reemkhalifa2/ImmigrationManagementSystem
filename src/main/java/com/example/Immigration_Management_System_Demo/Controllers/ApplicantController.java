@@ -22,6 +22,15 @@ public class ApplicantController {
     public Applicant saveApplicant(@RequestBody  Applicant applicant){
         return applicantService.saveApplicant(applicant);
     }
+    @PostMapping("register/applicant")
+    public Applicant saveApplicant(@RequestParam String firstName, @RequestParam String lastName,@RequestParam String passportNumber,@RequestParam String
+            nationality){
+        return applicantService.saveApplicant(firstName, lastName, passportNumber, nationality);
+    }
+
+
+
+
 
 
 
