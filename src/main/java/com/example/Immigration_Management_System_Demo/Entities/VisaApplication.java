@@ -16,6 +16,11 @@ public class VisaApplication {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String visaType;
+    private String status;
+    private String officerNotes;
+
+
     @ManyToOne
     Applicant applicant;
     @ManyToOne
