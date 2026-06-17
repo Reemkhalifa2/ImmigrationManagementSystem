@@ -1,5 +1,6 @@
 package com.example.Immigration_Management_System_Demo.Services;
 
+import DTO.CenterDTO;
 import com.example.Immigration_Management_System_Demo.Entities.ImmigrationCenter;
 import com.example.Immigration_Management_System_Demo.Repository.CenterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,12 +20,12 @@ public class CenterService {
         return centerRepository.save(immigrationCenter);
     }
 
-    public ImmigrationCenter search(Long id) {
+    public CenterDTO search(Long id) {
         if(id == null){
             throw new RuntimeException("Id cannot be null");
         }
-        return centerRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Center not found"));
+        return CenterDTO.convertToDTO(centerRepository.getById(id));
+
     }
 
 
