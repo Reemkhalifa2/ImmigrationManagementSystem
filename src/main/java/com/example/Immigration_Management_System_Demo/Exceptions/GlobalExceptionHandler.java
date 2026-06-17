@@ -24,6 +24,38 @@ public class GlobalExceptionHandler {
     }
 
 
+    @ExceptionHandler(GenericException.class)
+    public ResponseEntity<String> notFound(GenericException ex){
+        return ResponseEntity
+                .status(404)
+                .body(ex.getMessage());
+    }
+
+
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<String> runtime(RuntimeException ex){
+        return ResponseEntity
+                .badRequest()
+                .body(ex.getMessage());
+    }
+
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<String> illegal(IllegalArgumentException ex){
+        return ResponseEntity
+                .badRequest()
+                .body(ex.getMessage());
+    }
+
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<String> general(Exception ex){
+        return ResponseEntity
+                .status(500)
+                .body("Unexpected error occurred");
+    }
+
+
 
 
 
