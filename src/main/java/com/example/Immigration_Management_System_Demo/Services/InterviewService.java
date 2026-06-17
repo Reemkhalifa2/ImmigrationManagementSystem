@@ -4,6 +4,7 @@ import DTO.InterviewDTO;
 import com.example.Immigration_Management_System_Demo.Entities.Applicant;
 import com.example.Immigration_Management_System_Demo.Entities.ImmigrationOfficer;
 import com.example.Immigration_Management_System_Demo.Entities.Interview;
+import com.example.Immigration_Management_System_Demo.Exceptions.GenericException;
 import com.example.Immigration_Management_System_Demo.Repository.ApplicantRepository;
 import com.example.Immigration_Management_System_Demo.Repository.InterviewRepository;
 import com.example.Immigration_Management_System_Demo.Repository.OfficerRepository;
@@ -51,7 +52,7 @@ public class InterviewService {
     public Interview completeInterview(Long interviewId) {
 
         Interview interview = interviewRepository.findById(interviewId)
-                .orElseThrow(() -> new RuntimeException("Interview not found"));
+                .orElseThrow(() -> new GenericException("Interview not found"));
 
         interview.setStatus("COMPLETED");
 
@@ -61,7 +62,7 @@ public class InterviewService {
     public Interview cancelInterview(Long interviewId) {
 
         Interview interview = interviewRepository.findById(interviewId)
-                .orElseThrow(() -> new RuntimeException("Interview not found"));
+                .orElseThrow(() -> new GenericException("Interview not found"));
 
         interview.setStatus("CANCELLED");
 
@@ -76,6 +77,6 @@ public class InterviewService {
     public Interview getInterviewById(Long id) {
 
         return interviewRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Interview not found"));
+                .orElseThrow(() -> new GenericException("Interview not found"));
     }
 }
