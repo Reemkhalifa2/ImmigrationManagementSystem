@@ -1,5 +1,6 @@
 package com.example.Immigration_Management_System_Demo.Controllers;
 
+import DTO.OfficerDTO;
 import com.example.Immigration_Management_System_Demo.Entities.BorderControlofficer;
 import com.example.Immigration_Management_System_Demo.Entities.ImmigrationOfficer;
 import com.example.Immigration_Management_System_Demo.Services.OfficerService;
@@ -35,6 +36,11 @@ public class OfficerController {
         return officerService.search(id);
     }
 
+    @GetMapping("/rank")
+    public List<OfficerDTO> findOfficersByRank(@RequestParam String rank, @RequestParam int minimumClearanceLevel){
+        return officerService.findOfficersByRank(rank,minimumClearanceLevel);
+    }
+
     @PutMapping("promote/{id}")
     public ImmigrationOfficer promoteOfficer(@PathVariable Long id , @RequestParam String newRank, @RequestParam Integer clearance){
         return officerService.promoteOfficer(id,newRank,clearance);
@@ -44,6 +50,8 @@ public class OfficerController {
     public ImmigrationOfficer promoteOfficer(@PathVariable Long id , @RequestParam Long centerId){
         return officerService.transferOfficer(id,centerId);
     }
+
+
 
 
 
