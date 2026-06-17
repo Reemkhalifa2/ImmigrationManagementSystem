@@ -1,5 +1,6 @@
 package com.example.Immigration_Management_System_Demo.Services;
 
+import DTO.InterviewDTO;
 import com.example.Immigration_Management_System_Demo.Entities.Applicant;
 import com.example.Immigration_Management_System_Demo.Entities.ImmigrationOfficer;
 import com.example.Immigration_Management_System_Demo.Entities.Interview;
@@ -67,9 +68,9 @@ public class InterviewService {
         return interviewRepository.save(interview);
     }
 
-    public List<Interview> getOfficerSchedule(Long officerId, String date) {
+    public List<InterviewDTO> getOfficerSchedule(Long officerId, String date) {
 
-        return interviewRepository.findByOfficerIdAndInterviewDate(officerId, date);
+        return InterviewDTO.convertToDTO(interviewRepository.findByOfficerIdAndInterviewDate(officerId, date));
     }
 
     public Interview getInterviewById(Long id) {
