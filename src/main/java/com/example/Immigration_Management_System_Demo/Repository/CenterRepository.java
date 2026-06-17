@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface CenterRepository extends JpaRepository<ImmigrationCenter , Long> {
-    @Query("SELECT c from ImmigrationCenter where id=:id")
+    @Query("SELECT c FROM ImmigrationCenter c WHERE c.id = :id")
     ImmigrationCenter getById(@Param("id") Long id);
 
 
