@@ -19,7 +19,7 @@ public class ImmigrationOfficer extends Person{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
+    private Long id;
     @NotBlank(message = "Badge number is required")
     private String badgeNumber;
 
