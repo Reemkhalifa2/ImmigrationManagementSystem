@@ -4,6 +4,7 @@ import DTO.OfficerDTO;
 import com.example.Immigration_Management_System_Demo.Entities.BorderControlofficer;
 import com.example.Immigration_Management_System_Demo.Entities.ImmigrationCenter;
 import com.example.Immigration_Management_System_Demo.Entities.ImmigrationOfficer;
+import com.example.Immigration_Management_System_Demo.Exceptions.GenericException;
 import com.example.Immigration_Management_System_Demo.Repository.CenterRepository;
 import com.example.Immigration_Management_System_Demo.Repository.OfficerRepository;
 import jakarta.validation.constraints.NotBlank;
@@ -52,11 +53,11 @@ public class OfficerService {
     public ImmigrationOfficer promoteOfficer(@NotBlank(message = "id cannot be null") Long officerId, String newRank, int newClearanceLevel){
         ImmigrationOfficer immigrationOfficer = officerRepository.getById(officerId);
         if(immigrationOfficer == null){
-            throw new RuntimeException("officer not found");
+            throw new GenericException("officer not found");
         }
         if(newRank.equalsIgnoreCase(immigrationOfficer.getOfficerRank())
         || newClearanceLevel == immigrationOfficer.getClearanceLevel()){
-            throw new RuntimeException("Invalid Data");
+            throw new GenericException("Invalid Data");
         }
         immigrationOfficer.setOfficerRank(newRank);
         immigrationOfficer.setClearanceLevel(newClearanceLevel);
@@ -67,24 +68,24 @@ public class OfficerService {
     public ImmigrationOfficer transferOfficer(Long officerId, Long newCenterId) {
         ImmigrationOfficer officer = officerRepository.getById(officerId);
         ImmigrationCenter center = centerRepository.findById(newCenterId)
-                .orElseThrow(() -> new RuntimeException("Center not found with id: " + newCenterId));
+                .orElseThrow(() -> new GenericException("Center not found with id: " + newCenterId));
         officer.setCenter(center);
         return officerRepository.save(officer);
     }
 
     public List<ImmigrationOfficer> findOfficersByRank(String rank){
         if(rank == null){
-            throw new RuntimeException("Rank cannot be empty");
+            throw new GenericException("Rank cannot be empty");
         }
         return officerRepository.findByOfficerRank(rank);
     }
 
     public List<OfficerDTO> findOfficersByRank(String rank, int minimumClearanceLevel){
         if(rank == null){
-            throw new RuntimeException("Rank cannot be empty");
+            throw new GenericException("Rank cannot be empty");
         }
         if(minimumClearanceLevel<0 || minimumClearanceLevel > 5){
-            throw new RuntimeException("Clearance Level must be between 0 and 5");
+            throw new GenericException("Clearance Level must be between 0 and 5");
         }
         return OfficerDTO.convertToDTO(officerRepository.findByOfficerRank(rank));
     }
