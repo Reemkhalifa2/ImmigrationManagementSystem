@@ -19,7 +19,6 @@ public class Person {
     @NotBlank(message = "Gender is required")
     private String gender;
 
-    @NotBlank(message = "Phone number is required")
     @Pattern(
             regexp = "^[97]\\d{7}$",
             message = "Phone number must be 8 digits and start with 9 or 7"
