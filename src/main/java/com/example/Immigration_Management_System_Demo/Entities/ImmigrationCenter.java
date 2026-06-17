@@ -1,6 +1,7 @@
 package com.example.Immigration_Management_System_Demo.Entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,6 +17,7 @@ public class ImmigrationCenter {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank(message = "Name is required")
     private String name;
     private String locationCountry;
     private String type;
