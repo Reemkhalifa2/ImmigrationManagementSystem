@@ -1,5 +1,6 @@
 package com.example.Immigration_Management_System_Demo.Controllers;
 
+import DTO.ApplicantDTO;
 import com.example.Immigration_Management_System_Demo.Entities.Applicant;
 import com.example.Immigration_Management_System_Demo.Entities.AsylumSeeker;
 import com.example.Immigration_Management_System_Demo.Services.ApplicantService;
@@ -32,11 +33,11 @@ public class ApplicantController {
         return applicantService.saveApplicant(asylumSeeker);
     }
     @GetMapping()
-    public List<Applicant> getAll(){
+    public List<ApplicantDTO> getAll(){
         return applicantService.getAll();
     }
     @GetMapping("search")
-    public List<Applicant> search(@RequestParam String nationality){
+    public List<ApplicantDTO> search(@RequestParam String nationality){
         return applicantService.search(nationality);
     }
 
