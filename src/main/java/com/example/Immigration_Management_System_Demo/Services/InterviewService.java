@@ -34,7 +34,7 @@ public class InterviewService {
                 .orElseThrow(() -> new RuntimeException("Officer not found"));
 
         List<Interview> existing =
-                interviewRepository.findByOfficerIdAndInterviewDate(officerId, date);
+                interviewRepository.findByImmigrationOfficerIdAndInterviewDate(officerId, date);
 
         if (!existing.isEmpty()) {
             throw new RuntimeException("Officer is double-booked!");
@@ -69,9 +69,13 @@ public class InterviewService {
         return interviewRepository.save(interview);
     }
 
-    public List<InterviewDTO> getOfficerSchedule(Long officerId, String date) {
 
-        return InterviewDTO.convertToDTO(interviewRepository.findByOfficerIdAndInterviewDate(officerId, date));
+    public List<InterviewDTO> getOfficerScheduleByDate(Long officerId, String date) {
+
+        officerRepository.findById(officerId)
+                .orElseThrow(() -> new GenericException("Officer not found"));
+
+        return InterviewDTO.convertToDTO(interviewRepository.findByImmigrationOfficerIdAndInterviewDate(officerId, date));
     }
 
     public Interview getInterviewById(Long id) {
