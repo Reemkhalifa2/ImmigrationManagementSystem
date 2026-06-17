@@ -3,6 +3,7 @@ package com.example.Immigration_Management_System_Demo.Services;
 import com.example.Immigration_Management_System_Demo.Entities.Applicant;
 import com.example.Immigration_Management_System_Demo.Entities.ImmigrationOfficer;
 import com.example.Immigration_Management_System_Demo.Entities.VisaApplication;
+import com.example.Immigration_Management_System_Demo.Exceptions.GenericException;
 import com.example.Immigration_Management_System_Demo.Repository.ApplicantRepository;
 import com.example.Immigration_Management_System_Demo.Repository.OfficerRepository;
 import com.example.Immigration_Management_System_Demo.Repository.VisaApplicationRepository;
@@ -33,7 +34,7 @@ public class VisaApplicationService {
 
     public VisaApplication assignReviewOfficer(Long visaId , Long officerId){
         VisaApplication visaApplication = visaApplicationRepository.findById(visaId).orElseThrow(
-                ()-> new RuntimeException("Visa Not found!")
+                ()-> new GenericException("Visa Not found!")
         );
         ImmigrationOfficer immigrationOfficer = officerRepository.getById(officerId);
 
@@ -43,7 +44,7 @@ public class VisaApplicationService {
 
     public VisaApplication submitApplication(Long applicantId, String visaType) {
         Applicant applicant = applicantRepository.findById(applicantId)
-                .orElseThrow(() -> new RuntimeException("Applicant not found"));
+                .orElseThrow(() -> new GenericException("Applicant not found"));
 
         VisaApplication visa = new VisaApplication();
         visa.setApplicant(applicant);
@@ -62,11 +63,11 @@ public class VisaApplicationService {
 
     public VisaApplication processVisa(Long visaId, String newStatus, String notes) {
         VisaApplication visa = visaApplicationRepository.findById(visaId)
-                .orElseThrow(() -> new RuntimeException("Visa application not found"));
+                .orElseThrow(() -> new GenericException("Visa application not found"));
 
         if (!newStatus.equalsIgnoreCase("APPROVED") &&
                 !newStatus.equalsIgnoreCase("REJECTED")) {
-            throw new RuntimeException(
+            throw new GenericException(
                     "Status must be APPROVED or REJECTED");
         }
 
