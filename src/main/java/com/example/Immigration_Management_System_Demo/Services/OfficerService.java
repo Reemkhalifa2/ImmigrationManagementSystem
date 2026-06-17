@@ -1,5 +1,6 @@
 package com.example.Immigration_Management_System_Demo.Services;
 
+import DTO.OfficerDTO;
 import com.example.Immigration_Management_System_Demo.Entities.BorderControlofficer;
 import com.example.Immigration_Management_System_Demo.Entities.ImmigrationCenter;
 import com.example.Immigration_Management_System_Demo.Entities.ImmigrationOfficer;
@@ -78,14 +79,14 @@ public class OfficerService {
         return officerRepository.findByOfficerRank(rank);
     }
 
-    public List<ImmigrationOfficer> findOfficersByRank(String rank, int minimumClearanceLevel){
+    public List<OfficerDTO> findOfficersByRank(String rank, int minimumClearanceLevel){
         if(rank == null){
             throw new RuntimeException("Rank cannot be empty");
         }
         if(minimumClearanceLevel<0 || minimumClearanceLevel > 5){
             throw new RuntimeException("Clearance Level must be between 0 and 5");
         }
-        return officerRepository.findByOfficerRank(rank);
+        return OfficerDTO.convertToDTO(officerRepository.findByOfficerRank(rank));
     }
 
 
