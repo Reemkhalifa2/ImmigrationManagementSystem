@@ -6,6 +6,7 @@ import com.example.Immigration_Management_System_Demo.Entities.ImmigrationOffice
 import com.example.Immigration_Management_System_Demo.Services.OfficerService;
 import jdk.dynalink.linker.LinkerServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.sound.sampled.AudioFileFormat;
@@ -22,33 +23,33 @@ public class OfficerController {
     OfficerService officerService;
 
     @PostMapping
-    public ImmigrationOfficer register(@RequestBody ImmigrationOfficer immigrationOfficer){
-        return officerService.register(immigrationOfficer);
+    public ResponseEntity<ImmigrationOfficer> register(@RequestBody ImmigrationOfficer immigrationOfficer){
+        return ResponseEntity.ok(officerService.register(immigrationOfficer));
     }
 
     @PostMapping("border")
-    public ImmigrationOfficer register(@RequestBody BorderControlofficer borderControlofficer){
-        return officerService.register(borderControlofficer);
+    public ResponseEntity<ImmigrationOfficer> register(@RequestBody BorderControlofficer borderControlofficer){
+        return ResponseEntity.ok(officerService.register(borderControlofficer));
     }
 
     @GetMapping("/{id}")
-    public ImmigrationOfficer search(@PathVariable Long id){
-        return officerService.search(id);
+    public ResponseEntity<ImmigrationOfficer> search(@PathVariable Long id){
+        return ResponseEntity.ok(officerService.search(id));
     }
 
     @GetMapping("/rank")
-    public List<OfficerDTO> findOfficersByRank(@RequestParam String rank, @RequestParam int minimumClearanceLevel){
-        return officerService.findOfficersByRank(rank,minimumClearanceLevel);
+    public ResponseEntity<List<OfficerDTO> >findOfficersByRank(@RequestParam String rank, @RequestParam int minimumClearanceLevel){
+        return ResponseEntity.ok(officerService.findOfficersByRank(rank,minimumClearanceLevel));
     }
 
     @PutMapping("promote/{id}")
-    public ImmigrationOfficer promoteOfficer(@PathVariable Long id , @RequestParam String newRank, @RequestParam Integer clearance){
-        return officerService.promoteOfficer(id,newRank,clearance);
+    public ResponseEntity< ImmigrationOfficer >promoteOfficer(@PathVariable Long id , @RequestParam String newRank, @RequestParam Integer clearance){
+        return ResponseEntity.ok(officerService.promoteOfficer(id,newRank,clearance));
     }
 
     @PutMapping("transfer/{id}")
-    public ImmigrationOfficer promoteOfficer(@PathVariable Long id , @RequestParam Long centerId){
-        return officerService.transferOfficer(id,centerId);
+    public ResponseEntity<ImmigrationOfficer> promoteOfficer(@PathVariable Long id , @RequestParam Long centerId){
+        return ResponseEntity.ok(officerService.transferOfficer(id,centerId));
     }
 
 

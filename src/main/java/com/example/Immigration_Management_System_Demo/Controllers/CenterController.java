@@ -4,6 +4,7 @@ import DTO.CenterDTO;
 import com.example.Immigration_Management_System_Demo.Entities.ImmigrationCenter;
 import com.example.Immigration_Management_System_Demo.Services.CenterService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -17,16 +18,16 @@ public class CenterController {
     }
 
     @PostMapping
-    public ImmigrationCenter register(@RequestBody ImmigrationCenter immigrationCenter){
+    public ResponseEntity<ImmigrationCenter> register(@RequestBody ImmigrationCenter immigrationCenter){
         if(immigrationCenter == null){
             throw new RuntimeException("Center cannot be null");
         }
-        return centerService.register(immigrationCenter);
+        return ResponseEntity.ok(centerService.register(immigrationCenter));
     }
 
     @GetMapping("search/{id}")
-    public CenterDTO search(@PathVariable Long id){
-        return centerService.search(id);
+    public ResponseEntity<CenterDTO> search(@PathVariable Long id){
+        return ResponseEntity.ok(centerService.search(id));
     }
 
 

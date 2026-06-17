@@ -3,6 +3,7 @@ package com.example.Immigration_Management_System_Demo.Controllers;
 import com.example.Immigration_Management_System_Demo.Entities.VisaApplication;
 import com.example.Immigration_Management_System_Demo.Services.VisaApplicationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,45 +20,45 @@ public class VisaApplicationController {
     VisaApplicationService visaApplicationService;
 
     @PostMapping("/submit/{applicantId}")
-    public VisaApplication submitVisa(
+    public ResponseEntity<VisaApplication> submitVisa(
             @PathVariable Long applicantId,
             @RequestParam String type) {
 
-        return visaApplicationService.submitApplication(applicantId, type);
+        return ResponseEntity.ok(visaApplicationService.submitApplication(applicantId, type));
     }
 
 
     @PutMapping("/{visaId}/assign/{officerId}")
-    public VisaApplication assignOfficer(
+    public ResponseEntity<VisaApplication> assignOfficer(
             @PathVariable Long visaId,
             @PathVariable Long officerId) {
 
-        return visaApplicationService.assignReviewOfficer(visaId, officerId);
+        return ResponseEntity.ok(visaApplicationService.assignReviewOfficer(visaId, officerId));
     }
 
 
     @PutMapping("/{visaId}/process")
-    public VisaApplication processVisa(
+    public ResponseEntity<VisaApplication> processVisa(
             @PathVariable Long visaId,
             @RequestParam String status,
             @RequestParam String notes) {
 
-        return visaApplicationService.processVisa(visaId, status, notes);
+        return ResponseEntity.ok(visaApplicationService.processVisa(visaId, status, notes));
     }
 
     @GetMapping("/applicant/{applicantId}")
-    public List<VisaApplication> getVisasByApplicant(
+    public ResponseEntity<List<VisaApplication>> getVisasByApplicant(
             @PathVariable Long applicantId) {
 
-        return visaApplicationService.getVisasByApplicant(applicantId);
+        return ResponseEntity.ok(visaApplicationService.getVisasByApplicant(applicantId));
     }
 
 
     @GetMapping("/status/{status}")
-    public List<VisaApplication> getVisasByStatus(
+    public ResponseEntity<List<VisaApplication>> getVisasByStatus(
             @PathVariable String status) {
 
-        return visaApplicationService.getVisasByStatus(status);
+        return ResponseEntity.ok(visaApplicationService.getVisasByStatus(status));
     }
 
 

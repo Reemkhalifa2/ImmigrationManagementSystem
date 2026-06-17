@@ -5,6 +5,7 @@ import com.example.Immigration_Management_System_Demo.Entities.Applicant;
 import com.example.Immigration_Management_System_Demo.Entities.AsylumSeeker;
 import com.example.Immigration_Management_System_Demo.Services.ApplicantService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,31 +21,31 @@ public class ApplicantController {
 
 
     @PostMapping("register")
-    public Applicant saveApplicant(@RequestBody  Applicant applicant){
-        return applicantService.saveApplicant(applicant);
+    public ResponseEntity<Applicant>saveApplicant(@RequestBody  Applicant applicant){
+        return ResponseEntity.ok(applicantService.saveApplicant(applicant));
     }
     @PostMapping("register/applicant")
-    public Applicant saveApplicant(@RequestParam String firstName, @RequestParam String lastName,@RequestParam String passportNumber,@RequestParam String
+    public ResponseEntity<Applicant> saveApplicant(@RequestParam String firstName, @RequestParam String lastName,@RequestParam String passportNumber,@RequestParam String
             nationality){
-        return applicantService.saveApplicant(firstName, lastName, passportNumber, nationality);
+        return ResponseEntity.ok(applicantService.saveApplicant(firstName, lastName, passportNumber, nationality));
     }
     @PostMapping("register/asylum-seeker")
-    public AsylumSeeker saveApplicant(@RequestBody AsylumSeeker asylumSeeker){
-        return applicantService.saveApplicant(asylumSeeker);
+    public ResponseEntity<AsylumSeeker> saveApplicant(@RequestBody AsylumSeeker asylumSeeker){
+        return ResponseEntity.ok(applicantService.saveApplicant(asylumSeeker));
     }
     @GetMapping()
-    public List<ApplicantDTO> getAll(){
-        return applicantService.getAll();
+    public ResponseEntity<List<ApplicantDTO>> getAll(){
+        return ResponseEntity.ok(applicantService.getAll());
     }
     @GetMapping("search")
-    public List<ApplicantDTO> search(@RequestParam String nationality){
-        return applicantService.search(nationality);
+    public ResponseEntity<List<ApplicantDTO>> search(@RequestParam String nationality){
+        return ResponseEntity.ok(applicantService.search(nationality));
     }
 
 
     @PutMapping("flag/{id}")
-    public Applicant flag(@PathVariable Long id){
-        return applicantService.flagCriminalRecord(id);
+    public ResponseEntity<Applicant> flag(@PathVariable Long id){
+        return ResponseEntity.ok(applicantService.flagCriminalRecord(id));
     }
 
 
