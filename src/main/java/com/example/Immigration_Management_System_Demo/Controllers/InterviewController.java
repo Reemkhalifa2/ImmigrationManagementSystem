@@ -37,6 +37,6 @@ public class InterviewController {
             @PathVariable Long officerId,
             @PathVariable String date) {
 
-        return interviewService.getOfficerSchedule(officerId, date);
+        return interviewService.getOfficerScheduleByDate(officerId, date);
     }
 }
