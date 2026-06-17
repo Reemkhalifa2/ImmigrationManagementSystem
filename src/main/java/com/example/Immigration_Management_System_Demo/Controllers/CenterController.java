@@ -1,5 +1,6 @@
 package com.example.Immigration_Management_System_Demo.Controllers;
 
+import DTO.CenterDTO;
 import com.example.Immigration_Management_System_Demo.Entities.ImmigrationCenter;
 import com.example.Immigration_Management_System_Demo.Services.CenterService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ public class CenterController {
     }
 
     @GetMapping("search/{id}")
-    public ImmigrationCenter search(@PathVariable Long id){
+    public CenterDTO search(@PathVariable Long id){
         return centerService.search(id);
     }
 
